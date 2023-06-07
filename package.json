@@ -1,0 +1,50 @@
+{
+  "private": true,
+  "type": "module",
+  "name": "fantasie",
+  "description": "A fantastical static site generator",
+  "version": "0.1.0",
+  "homepage": "https://github.com/Quantalabs/fantasie",
+  "license": "GPL-3.0-or-later",
+  "main": "./src/index.js",
+  "packageManager": "yarn@3.6.0",
+  "bugs": {
+    "url": "https://github.com/Quantalabs/fantasie/issues",
+    "email": "npm.quantalabs@gmail.com"
+  },
+  "author": {
+    "name": "Quantalabs",
+    "url": "https://github.com/Quantalabs",
+    "email": "npm.quantalabs@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Quantalabs/fantasie.git"
+  },
+  "engines": {
+    "node": ">=16.8.0"
+  },
+  "dependencies": {
+    "markdown": "^0.5.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "2.25.3",
+    "eslint-plugin-jsx-a11y": "6.5.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "7.28.0",
+    "eslint-plugin-react-hooks": "4.3.0",
+    "husky": "^8.0.0",
+    "prettier": "^2.8.8"
+  },
+  "scripts": {
+    "prepare": "husky install",
+    "lint:check": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format:check": "prettier --check .",
+    "format:fix": "prettier --write .",
+    "postinstall": "husky install"
+  }
+}
