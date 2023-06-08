@@ -7,14 +7,15 @@ import utils from "./utils/index.js";
 
 function createServer(templates, globalvalues, host, port) {
   function requestListener(req, res) {
-    // If request is for favicon.ico, return ./favicon.ico if exists
-    if (req.url === "/favicon.ico" && fs.existsSync("./favicon.ico")) {
-      res.writeHead(200, { "Content-Type": "image/x-icon" });
-      res.end(fs.readFileSync("./favicon.ico"));
-      return;
-    }
-    if (req.url === "/favicon.ico") {
-      // Don't send favicon.ico
+    // If request for page does not exist, return 404
+    if (!fs.existsSync(`./_public${req.url === "/" ? "/index.html" : req.url}`)) {
+      // If 404.html exists, return
+      if (fs.existsSync("./_public/404.html")) {
+        res.writeHead(404, { "Content-Type": "text/html" });
+        res.end(fs.readFileSync("./_public/404.html"));
+      }
+      res.writeHead(404);
+      res.end();
       return;
     }
 
