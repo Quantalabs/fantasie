@@ -6,6 +6,7 @@ import size from "window-size";
 import fs from "fs";
 
 import server from "../server.js";
+import utils from "../utils/index.js";
 
 const avaliableWidth = size.width || 75;
 
@@ -16,6 +17,20 @@ const commands = [
   {
     name: "start",
     description: "Starts the server",
+    args: [
+      { name: "port", type: "number", description: "Port to listen on", required: true },
+      { name: "host", type: "string", description: "Host to listen on", required: true },
+      { name: "dir", type: "string", description: "Directory to serve \n  [default: ./]", required: false },
+    ],
+  },
+  {
+    name: "gen",
+    description: "Generates static files in _public/",
+    args: [{ name: "dir", type: "string", description: "Project directory \n  [default: ./]", required: false }],
+  },
+  {
+    name: "static",
+    description: "Generates static files in _public/ and hosts server",
     args: [
       { name: "port", type: "number", description: "Port to listen on", required: true },
       { name: "host", type: "string", description: "Host to listen on", required: true },
@@ -45,6 +60,48 @@ function start(dir) {
   clear();
 
   server.createServer(templates, config, argv.host, argv.port);
+}
+
+function genStatic(dir) {
+  console.log(chalk.cyan("Finding config and template files..."));
+
+  // Find config JSON file, and find all templates in _templates folder
+  let config = fs.readFileSync(`${dir}/config.json`);
+  config = JSON.parse(config);
+
+  const templates = {};
+  fs.readdirSync(`${dir}/_templates`).forEach((file) => {
+    const filenoext = file.split(".")[0];
+    const ext = file.split(".")[1];
+    if (ext === "html") {
+      templates[filenoext] = fs.readFileSync(`${dir}/_templates/${file}`, "utf8");
+    }
+  });
+
+  console.log(chalk.bgCyan("Finished! Generating static site..."));
+
+  utils.createStatic(config, templates);
+}
+
+function startStaticServer(dir) {
+  console.log(chalk.cyan("Finding config and template files..."));
+
+  // Find config JSON file, and find all templates in _templates folder
+  let config = fs.readFileSync(`${dir}/config.json`);
+  config = JSON.parse(config);
+
+  const templates = {};
+  fs.readdirSync(`${dir}/_templates`).forEach((file) => {
+    const filenoext = file.split(".")[0];
+    const ext = file.split(".")[1];
+    if (ext === "html") {
+      templates[filenoext] = fs.readFileSync(`${dir}/_templates/${file}`, "utf8");
+    }
+  });
+
+  console.log(chalk.bgCyan("Finished! Generating static site and starting server..."));
+
+  server.createStatic(templates, config, argv.host, argv.port);
 }
 
 function help(commandarg) {
@@ -119,12 +176,17 @@ function help(commandarg) {
   }
 }
 
-if (argv.help || argv._[0] === "help") {
+if (argv.help) {
   help(argv._[0]);
   process.exit(0);
 } else if (argv._[0] === "start") {
   start(argv.dir || ".");
+} else if (argv._[0] === "static") {
+  startStaticServer(argv.dir || ".");
+} else if (argv._[0] === "gen") {
+  genStatic(argv.dir || ".");
 } else {
   console.log(chalk.red("Invalid command"));
+
   help();
 }
