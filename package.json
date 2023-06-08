@@ -7,6 +7,7 @@
   "homepage": "https://github.com/Quantalabs/fantasie",
   "license": "GPL-3.0-or-later",
   "main": "./src/index",
+  "bin": "./src/bin/cli.js",
   "packageManager": "yarn@3.6.0",
   "bugs": {
     "url": "https://github.com/Quantalabs/fantasie/issues",
@@ -25,8 +26,13 @@
     "node": ">=16.8.0"
   },
   "dependencies": {
+    "chalk": "^5.2.0",
+    "clear": "^0.1.0",
+    "cliui": "^8.0.1",
     "front-matter": "^4.0.2",
-    "markdown": "^0.5.0"
+    "markdown": "^0.5.0",
+    "minimist": "^1.2.8",
+    "window-size": "^1.1.1"
   },
   "devDependencies": {
     "eslint": "^8.2.0",
