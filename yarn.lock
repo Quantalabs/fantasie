@@ -125,13 +125,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"abbrev@npm:1":
-  version: 1.1.1
-  resolution: "abbrev@npm:1.1.1"
-  checksum: a4a97ec07d7ea112c517036882b2ac22f3109b7b19077dc656316d07d308438aac28e4d9746dc4d84bf6b1e75b4a7b0a5f3cb30592419f128ca9a8cee3bcfa17
-  languageName: node
-  linkType: hard
-
 "acorn-jsx@npm:^5.3.2":
   version: 5.3.2
   resolution: "acorn-jsx@npm:5.3.2"
@@ -361,6 +354,13 @@ __metadata:
   version: 1.1.4
   resolution: "color-name@npm:1.1.4"
   checksum: b0445859521eb4021cd0fb0cc1a75cecf67fceecae89b63f62b201cca8d345baf8b952c966862a9d9a2632987d4f6581f0ec8d957dfacece86f0a7919316f610
+  languageName: node
+  linkType: hard
+
+"commander@npm:^9.0.0":
+  version: 9.5.0
+  resolution: "commander@npm:9.5.0"
+  checksum: c7a3e27aa59e913b54a1bafd366b88650bc41d6651f0cbe258d4ff09d43d6a7394232a4dadd0bf518b3e696fdf595db1028a0d82c785b88bd61f8a440cecfade
   languageName: node
   linkType: hard
 
@@ -866,9 +866,9 @@ __metadata:
     eslint-plugin-react-hooks: 4.3.0
     front-matter: ^4.0.2
     husky: ^8.0.0
-    markdown: ^0.5.0
     minimist: ^1.2.8
     prettier: ^2.8.8
+    showdown: ^2.1.0
     window-size: ^1.1.1
   bin:
     fantasie: ./src/bin/cli.js
@@ -1540,17 +1540,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"markdown@npm:^0.5.0":
-  version: 0.5.0
-  resolution: "markdown@npm:0.5.0"
-  dependencies:
-    nopt: ~2.1.1
-  bin:
-    md2html: ./bin/md2html.js
-  checksum: 2b2a941d2cc6ce6c65002e6e961f66e4b839492a489e367d488fbdb9758ddbba0f6a762d7d015f417d96585a8c74d1da6ed6e2a0ba1bcbc2729e86dbd3ec6ae1
-  languageName: node
-  linkType: hard
-
 "minimatch@npm:^3.0.4, minimatch@npm:^3.0.5, minimatch@npm:^3.1.1, minimatch@npm:^3.1.2":
   version: 3.1.2
   resolution: "minimatch@npm:3.1.2"
@@ -1592,17 +1581,6 @@ __metadata:
   version: 1.4.0
   resolution: "natural-compare@npm:1.4.0"
   checksum: 23ad088b08f898fc9b53011d7bb78ec48e79de7627e01ab5518e806033861bef68d5b0cd0e2205c2f36690ac9571ff6bcb05eb777ced2eeda8d4ac5b44592c3d
-  languageName: node
-  linkType: hard
-
-"nopt@npm:~2.1.1":
-  version: 2.1.2
-  resolution: "nopt@npm:2.1.2"
-  dependencies:
-    abbrev: 1
-  bin:
-    nopt: ./bin/nopt.js
-  checksum: eb7bf965c0117d537f1859b5da1d33cf3d48c63fa4c7f95ed1356fa07323ea5938878cf6bd511b7c6240c21a3b3f079066398c1d26dd9e2eb6235d0963013b7f
   languageName: node
   linkType: hard
 
@@ -1954,6 +1932,17 @@ __metadata:
   version: 3.0.0
   resolution: "shebang-regex@npm:3.0.0"
   checksum: 1a2bcae50de99034fcd92ad4212d8e01eedf52c7ec7830eedcf886622804fe36884278f2be8be0ea5fde3fd1c23911643a4e0f726c8685b61871c8908af01222
+  languageName: node
+  linkType: hard
+
+"showdown@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "showdown@npm:2.1.0"
+  dependencies:
+    commander: ^9.0.0
+  bin:
+    showdown: bin/showdown.js
+  checksum: 9e33607612c4465f9ef39de356e2cee512e248eb71d4725e1d4353cf3ab4bbe89a94601ce6bfbd8245000633693c8b90e7d85a9613dfeba7704a7422cee78282
   languageName: node
   linkType: hard
 

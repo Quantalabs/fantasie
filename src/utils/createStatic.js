@@ -1,8 +1,10 @@
-import { markdown } from "markdown";
+import showdown from "showdown";
 import fs from "fs";
 import * as fm from "front-matter";
 
 import replaceTemp from "./replacetemp.js";
+
+const markdown = new showdown.Converter();
 
 function createStatic(globalvalues, templates) {
   if (!fs.existsSync("./_public")) {
@@ -21,7 +23,7 @@ function createStatic(globalvalues, templates) {
       const values = {
         ...globalvalues,
         ...frontmatter.attributes,
-        content: markdown.toHTML(frontmatter.body),
+        content: markdown.makeHtml(frontmatter.body),
       };
 
       // Create _public/file.html

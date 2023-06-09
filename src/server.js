@@ -1,9 +1,11 @@
 import http from "http";
 import fs from "fs";
-import { markdown } from "markdown";
 import * as fm from "front-matter";
+import showdown from "showdown";
 
 import utils from "./utils/index.js";
+
+const markdown = new showdown.Converter();
 
 function createServer(templates, globalvalues, host, port) {
   function requestListener(req, res) {
@@ -30,7 +32,7 @@ function createServer(templates, globalvalues, host, port) {
     const values = {
       ...globalvalues,
       ...frontmatter.attributes,
-      content: markdown.toHTML(frontmatter.body),
+      content: markdown.makeHtml(frontmatter.body),
     };
 
     // Render the file
